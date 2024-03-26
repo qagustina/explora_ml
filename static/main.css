@@ -1,0 +1,811 @@
+.card-text-eda{
+  text-align: justify;
+  max-width: 850px;
+  margin: 0 auto; /* Márgenes automáticos para centrar */
+  margin-top: 20px;
+}
+
+.container-home-title {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del flexbox a columna */
+  align-items: center; /* Centra horizontalmente */
+}
+
+.small-image {
+  width: 45px; /* Ajusta el ancho de la imagen según lo necesites */
+  height: auto; /* Esto mantiene la proporción de la imagen */
+  margin-bottom: 60px;
+}
+
+a.links-home{
+  color: rgb(1, 31, 132);
+  text-decoration: underline;
+}
+
+.text-home, .text-home-list{
+  text-align: justify;
+  color: rgb(12, 26, 71);
+  max-width: 700px; /* Ancho máximo del texto */
+  margin: 0 auto; /* Márgenes automáticos para centrar */
+}
+
+.text-home-list{
+  margin-top: 40px;
+  max-width: 650px;
+}
+
+.table-list-users thead {
+  background-color: #f4ecec; /* Cambia esto al color que desees */
+  text-align: center;
+  color: rgb(12, 26, 71);
+}
+
+.btn-guardar-user, .btn-guardar-cambios{
+  background-color: rgb(56, 188, 56);
+  color:white;
+  text-align: right;
+}
+
+.table-list-users{
+  background-color: white;
+}
+
+.btn-modificar{
+  background-color: #c1bebe;
+}
+
+.btn-add-user-container{
+  text-align: right;
+}
+
+.btn-add-user {
+  /* Estilos adicionales para el botón si es necesario */
+  margin-top: 20px; /* Por ejemplo, agregar un margen superior para separarlo del texto */
+  color: #959aa0;
+  background-color: white;
+  font-weight: lighter;
+  margin-left: auto;
+  border: 1px solid #959aa0; 
+}
+
+.container-register{
+  max-width: 600px; 
+  height: 600px;
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  padding: 20px; /* Añade un espacio interno al contenedor */
+  border: 1px solid #ccc; 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+  margin-top: 80px;
+  background-color: rgb(255, 255, 255);
+}
+
+
+.container-login {
+  max-width: 600px; 
+  height: 500px;
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  padding: 20px; /* Añade un espacio interno al contenedor */
+  border: 1px solid #ccc; 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+  margin-top: 90px;
+  background-color: rgb(255, 255, 255);
+}
+
+.register-text-login{
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.footer-content {
+  text-align: center; /* Centrar el texto horizontalmente */
+  color: #a9a0a0; /* Cambiar el color del texto a rojo (#FF0000) */
+  position: fixed; /* Fija el pie de página */
+  bottom: 0; /* Lo coloca al final de la ventana */
+  width: 100%; /* Ocupa el ancho completo */
+  padding: 10px 0; /* Espaciado interno superior e inferior */
+}
+
+
+.footer-page-admin{
+  position: fixed;
+  bottom: 0;
+  left: 50%; /* Ubica el lado izquierdo del footer en el centro */
+  transform: translateX(-50%); /* Ajusta la posición hacia la izquierda */
+  width: max-content;
+  text-align: center;
+  color: #a9a0a0;
+  padding: 10px 0;
+  background-color: #f2f2f2;
+  /* Ajusta el margen izquierdo para desplazar el footer hacia la derecha */
+  margin-left: 120px;
+}
+
+.footer-admin{
+  text-align: center; 
+  color: #a9a0a0;
+  padding: 10px 0;
+  margin-top: auto; 
+}
+
+.footer-index{
+  /* Estilos para el footer */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #a9a0a0;
+  padding: 10px 0;
+  left: 130px; 
+}
+
+.form-column-login {
+  margin-top: 60px;
+  flex: 0.4; 
+  padding: 40px; 
+  box-sizing: border-box; 
+}
+
+.image-column-login {
+  margin-top: 60px;
+  flex: 0.4; /* Ocupar aproximadamente el 60% del espacio disponible */
+  padding: 40px; /* Agregar espacio alrededor de la imagen */
+  box-sizing: border-box; /* Incluir el padding en el ancho de la columna */
+}
+
+
+.form-group-login {
+  margin-bottom: 15px; /* Espacio entre los elementos del formulario */
+}
+
+.title-login{
+  font-weight: lighter;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 40px;
+}
+
+.btn-login, .btn-register{
+  width: 100%; /* El botón ocupará el ancho completo del contenedor padre */
+  background-color:#68abf3;
+  color:#ffffff;
+  font-weight: bolder;
+}
+
+.register-link, .login-link {
+  color: #68abf3;
+}
+
+.title-register{
+  text-align: center;
+  font-size: 25px;
+  font-weight: lighter;
+  color: #6f6e6e;
+  margin-top: 80px;
+}
+
+.body-login{
+  background-color: #f6f3f3;
+}
+
+.btn-register{
+  width: 100%;
+}
+
+.body-register{
+  background-color: #f3eeee;
+}
+
+.text-metricas{
+  max-width: 900px; 
+  margin: 0 auto;
+  text-align: justify;
+  color: rgb(12, 26, 71);
+  margin-bottom: 30px;   
+}
+
+.title-metricas{
+  font-size: 30px;
+  max-width: 900px; 
+  margin: 0 auto;
+  text-align: center;
+  color: rgb(12, 26, 71);
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+.custom-card-arboles{
+  color: rgb(12, 26, 71);
+  align-items: center; 
+  text-align: justify;
+  background-color: transparent;
+}
+
+.custom-card-arboles .card-arboles-img {
+  margin-top: 25px;
+  max-width: 100%;
+  height: auto;
+}
+
+#spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card-text-lm{
+  color: rgb(12, 26, 71);
+  text-align: justify;
+}
+
+.title-predicciones{
+  font-size: 30px;
+  text-align: left;
+  font-weight: bold;
+  margin-top: 50px;
+  color: rgb(12, 26, 71);
+}
+
+.custom-card-eda{
+  background-color: #fcfcfc;
+  border-radius: 5px;    
+}
+
+.custom-card-eda .card-text {
+  text-align: justify;
+  color: rgb(12, 26, 71);
+}
+
+.title-eda{
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 30px;
+  color: rgb(12, 26, 71);
+}
+
+.title-eda-sub{
+  font-size: 25px;
+  text-align: center;
+  margin-top: 20px;
+  color: rgb(12, 26, 71);
+}
+
+.col-divider {
+  border-right: 2px solid #ccc; 
+  margin: 0 5px; 
+}
+
+.card-variables{
+  background-color: rgb(244, 233, 246);
+  border:  2px solid rgb(12, 26, 71);
+  width: 900px;
+  padding: 10px;
+}
+
+.form-check {
+  margin-bottom: 3px; /
+}
+
+.title-table-exp{
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #daa6d2;
+}
+
+.info-experiments{
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 50px;
+}
+
+.info-chart-map{
+  text-align: center;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.custom-table-experiments {
+  border-collapse: collapse; 
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+
+.custom-table-experiments th,
+.custom-table-experiments td {
+  border: 2px solid black; 
+  padding: 1px; 
+}
+
+#chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+.chart-c{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-table-responsive-m {
+  width: 60%;
+  margin: auto;
+  margin-bottom: 40px;
+  background-color: rgb(249, 242, 250);
+  border-style: solid;
+  border-color: #0e0a46;
+}
+
+
+.custom-th, .custom-td {
+  padding: 8px;
+  text-align: center;
+}
+/*tabla de comparacion de metricas de ML*/
+.custom-td-m, .custom-th-m{
+  text-align: left;
+  width: 150px;
+}
+
+.custom-td-n-m{
+  width: 5000px;
+}
+
+.draggable-list {
+  list-style-type: none;
+  padding: 0;
+}
+.draggable-list li {
+  cursor: pointer;
+}
+.droppable-list {
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid rgb(204, 204, 204);
+  min-height: 100px;
+}
+/* Establecer el fondo y centrar el formulario */
+.form-container {
+  background-color: #f0f0f0; /* Cambia el color de fondo según tus preferencias */
+  text-align: center;
+  padding: 20px;
+  max-width: 600px; /* Ajusta el ancho del formulario según tus necesidades */
+  width: 80%; /* Ajusta el ancho del formulario en porcentaje o píxeles */
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px; /* Ajusta el espacio interno del formulario según tus necesidades */
+}
+
+/* Estilo para los botones */
+.form-container button {
+  background-color: #007bff; /* Cambia el color del botón según tus preferencias */
+  color: #fff; /* Cambia el color del texto del botón según tus preferencias */
+  font-size: 18px; /* Ajusta el tamaño de fuente del botón según tus necesidades */
+  padding: 10px 20px; /* Ajusta el espacio interno del botón según tus necesidades */
+  border: none;
+  cursor: pointer;
+  margin-top: 10px; /* Espacio entre el botón y los inputs */
+}
+
+/* Estilo para los labels */
+.form-container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Estilo para las imágenes */
+.form-container img {
+  width: 100px; /* Ajusta el ancho de la imagen según tus necesidades */
+  margin-top: 10px; /* Espacio entre la imagen y los inputs */
+  display: block; /* Centra la imagen horizontalmente */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Estilos para la línea divisoria */
+.sidebar-divider {
+  height: 1px;
+  background-color: #f3ecec; /* Cambia el color de la línea divisoria según tus preferencias */
+  margin-bottom: 15px; /* Espacio entre la línea divisoria y los elementos del menú */
+}
+
+.sidebar-heading {
+  color: #fff; /* Cambia el color del texto del encabezado */
+  text-align: center; /* Alinea el texto en el centro */
+  font-size: 20px; /* Tamaño de fuente del encabezado */
+  margin-top: 10px; /* Espacio superior entre el texto y los botones */
+}
+
+.navbar-sidebar {
+  min-width: 60px; /* Establece un ancho mínimo para el sidebar (ajusta según tus necesidades) */
+  width: 250px; /* Establece un ancho deseado para el sidebar (ajusta según tus necesidades) */
+  background-color: #333; /* Cambia el color de fondo del sidebar */
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  transition: 0.5s;
+}
+
+/* Estilos para los enlaces del sidebar (como botones) */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.title-menu{
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bolder;
+  /*font-family: monospace;*/
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+.sidebar-menu li {
+  margin: 0;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 15px 20px;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.sidebar-menu a:hover {
+  background-color: #555;
+}
+
+/* Estilos para hacer el sidebar responsive */
+@media (max-width: 768px) {
+  .navbar-sidebar {
+      min-width: 0;
+      width: 60px;
+  }
+
+  .navbar-sidebar.active {
+      min-width: 60px;
+      width: 250px;
+  }
+}
+
+/* Estilos para el contenido */
+main {
+  margin-left: 250px; /* Ajusta el margen izquierdo para evitar superposiciones */
+  transition: 0.5s; /* Agrega una transición suave para ajustes de tamaño */
+}
+
+/* Estilos para hacer el contenido responsive */
+@media (max-width: 768px) {
+  main {
+      margin-left: 60px;
+  }
+}
+
+.pred-arboles-body{
+  background-color:#fabab7;
+}
+
+.home-title{
+  font-size: 34px;
+  color:rgb(12, 26, 71);
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+
+.body-experiments, .body-admin{
+  background-color: #fdf3ed;
+}
+
+.home-body{
+  background-color: #f1f3f3;
+}
+.eda-body{
+  background-color: #fdf3ed;
+}
+
+.exp-body {
+  background-color: #f1f3f3; 
+}
+
+.pred-ml-body{
+  background-color: #f1f3f3;
+}
+
+.table-bordered-arboles{
+  border-collapse: collapse;
+  border-width: 4px;
+  border-color: #f3f5f7;
+  border-style: solid;
+  text-align: center;
+}
+
+.table-bordered-arboles tr {
+  border-bottom: 4px solid #f3f5f7; /* Estilo de la línea horizontal de la fila */
+}
+
+.table-bordered-arboles th {
+  text-align: center; /* Centra el texto en las cabeceras de la tabla */
+}
+
+.table-bordered-ml {
+  border-collapse: collapse;
+  border-width: 2.5px;
+  border-color: #232f3e;
+  border-style: solid;
+  text-align: center;
+  }
+
+.table-bordered-ml tr {
+    border-bottom: 2.5px solid #232f3e; /* Estilo de la línea horizontal de la fila */
+  }
+
+.table-bordered-ml th {
+    text-align: center; /* Centra el texto en las cabeceras de la tabla */
+  }
+
+.text-resultados-ml{
+  text-align: center;
+  font-weight: lighter; 
+  font-size: 35px; 
+  color: #232f3e; 
+  margin-top: 30px;
+}
+
+.subtext-resultados-ml{
+  color: #232f3e;
+  font-size: 15px;
+  text-align: left;
+}
+
+.text-resultados-arboles{
+  text-align: center;
+  font-weight: bolder; 
+  font-size: 35px; 
+  color: #fdf3f3; 
+}
+
+.subtext-resultados-arboles{
+  color: #232f3e;
+  font-size: 15px;
+}
+
+.colored-line {
+  height: 5px;
+  background-color: #232f3e; /* Cambia "blue" por el color que prefieras */
+  border: none; /* Elimina el borde por defecto */
+}
+
+.title-experiments, .title-admin{
+  text-align: center;
+  font-weight: bold; 
+  font-size: 40px; 
+  color: #232f3e; 
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.subtitle-experiments{
+  font-size: 18px;
+  text-align: center;
+  font-weight: lighter;
+  margin-top: 40px;
+}
+
+.pred-title {
+  text-align: center;
+  font-weight: bold; 
+  font-size: 45px; 
+  color: #232f3e; 
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.pred-title-sub{
+  font-size: 24px;
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+.b-pred-lineal{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-pred .card-body{
+  background-color: rgb(250, 238, 252);
+  /* falta agregar color de BORDE */
+}
+
+.card-pred  .card-header-tabs{
+  background-color: rgb(250, 238, 252);
+}
+
+/*seccion explorar modelos */
+.card-title {
+  font-weight: bold; /* Agrega efecto de negrita */
+  font-size: 1.4rem; /* Aumenta el tamaño del texto */
+  text-decoration: underline;
+  text-decoration-thickness: 2px; /* Ajusta el grosor del subrayado */
+}
+
+/* Estilos generales del botón */
+.custom-button {
+  background-color: white;
+  border: 1px solid rgb(5, 18, 33);
+  color: rgb(14, 14, 59);
+  font-weight: bold;
+  padding: 8px 20px; /* Ajusta la altura (primer valor) y el ancho (segundo valor) del botón */
+  border-radius: 0; /* Para hacerlo rectangular */
+  transition: box-shadow 0.3s; /* Agrega una transición para la sombra */
+}
+
+/* Estilo de sombra al pasar el cursor por encima */
+.custom-button:hover {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4) /* Añade una sombra al pasar el cursor */
+}
+
+
+/* BotonPredecir- seleccion variables */
+.button-pred-arboles{
+  color: rgb(12, 26, 71);
+  border: 2px solid rgb(12, 26, 71);
+  padding: 8px 28px;
+  text-align: center;
+  font-size: 16px;
+  background-color: rgb(240, 198, 248);
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.button-sv-container { 
+  /*background-color: #e38a23; */
+  color: rgb(12, 26, 71);
+  border: 2px solid rgb(12, 26, 71);
+  padding: 8px 28px;
+  text-align: center;
+  font-size: 16px;
+  float: right;
+  background-color: rgb(240, 198, 248);
+  margin-left: 5px;
+}
+
+.button-sv-container:hover {
+  background-color: rgb(228, 141, 245); /* Color de fondo cuando el cursor está sobre el botón */
+}
+
+.button-seleccionvbles-container { /* behavior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.b-pred-lineal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.btn-selectall, .btn-limpiar{
+  color: rgb(12, 26, 71);
+  border: 2px solid rgb(12, 26, 71);
+  padding: 5px 18px;
+  text-align: center;
+  font-size: 12px;
+  margin-left: 5px;
+  background-color: rgb(246, 237, 248);
+}
+
+.btn-selectall-arboles, .btn-limpiar-arboles{
+  color: rgb(12, 26, 71);
+  border: 2px solid rgb(12, 26, 71);
+  padding: 5px 18px;
+  text-align: center;
+  font-size: 12px;
+  margin-left: 5px;
+  background-color: rgb(246, 237, 248);
+  cursor: pointer;
+}
+
+.btn-container-arboles{
+  text-align: center;
+}
+
+/* Cambiar el color de fondo y el color de las letras */
+#cardContent1 .card, #cardContent2 .card {
+  background-color: rgb(255, 255, 255); /* Cambia el color de fondo */
+  color: rgb(12, 26, 71); /* Cambia el color de las letras */
+  font-size: 16px; /* Hacerlo un poco más pequeño */
+  padding: 30px; /* Añadir espaciado interno */
+  text-align: left;
+  max-width: 800px; /* Define el ancho máximo de la tarjeta */
+  margin: 0 auto; /* Centra la tarjeta horizontalmente */
+}
+
+#cardContent3 .card{
+  background-color: rgb(255, 255, 255); /* Cambia el color de fondo */
+  color: rgb(12, 26, 71); /* Cambia el color de las letras */
+  font-size: 16px; /* Hacerlo un poco más pequeño */
+  padding: 30px; /* Añadir espaciado interno */
+  text-align: justify;
+  max-width: 800px; /* Define el ancho máximo de la tarjeta */
+  margin: 0 auto; /* Centra la tarjeta horizontalmente */
+}
+
+.button-container-ver-vbles, .button-container-ver-exp-m{
+  text-align: left;
+}
+
+.btn-ver-vbles, .btn-ver-exp-m{
+  color: rgb(12, 26, 71);
+  border: 2px solid rgb(12, 26, 71);
+  padding: 8px 28px;
+  text-align: left;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255);
+  margin-left: 45px;
+}
+
+.button-container-ver-exp-m{
+  margin-bottom: 20px;
+  margin-top: 35px;
+}
+
+/* Icono y Tooltip - seccion ModelosL */
+.info-icon{
+  color:#fcb900;
+}
+
+.tooltip-text {
+  position: absolute;
+  background-color: #0e0a46; /* color de fondo */
+  color: #fcfcfc; /* color de letra */
+  padding: 4px 8px;
+  /*border-radius: 4px;*/
+  font-size: 14px;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url("./fonts/Roboto-Thin.ttf") format("ttf");
+    font-style: normal;
+    font-size: medium;
+  }
+  
+  @font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url("./fonts/Roboto-Medium.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  *{
+    padding: 0px;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
