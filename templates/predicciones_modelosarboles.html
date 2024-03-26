@@ -1,0 +1,321 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+
+
+<body class="pred-arboles-body">
+    <h5 class="pred-title">Arboles de Decisión</h5>   
+        <div class="card mb-3 custom-card-arboles">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ url_for('static', filename='dt_ml.png') }}" class="card-arboles-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <p class="card-text">Un <b>árbol de decisión</b> consiste de una serie de decisiones secuenciales, 
+                    o <b>nodos de decisión</b>, sobre las características de un conjunto de datos.La estructura de flujo resultante se navega a 
+                    través de declaraciones de control condicionales, o reglas If-then, que dividen cada nodo de decisión en dos o más subnodos. 
+                    Los <b>nodos hoja</b> representan resultados de predicción para el modelo.<br>Entrenar un árbol de decisiones a partir de datos 
+                    significa determinar el orden en el que se deben ensamblar las decisiones desde la raíz hasta las hojas. 
+                    Luego se pueden pasar nuevos datos de arriba hacia abajo hasta llegar a un nodo hoja, lo que representa una predicción para ese 
+                    punto de datos.</p>
+                  <!--p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p-->
+                </div>
+              </div>
+            </div>
+          </div>
+       
+            <p class="pred-title-sub">Selección de variables</p>     
+                <div class="card-variables m-auto">
+                    <form method="POST" action="/predict_a" onsubmit="return validarSeleccion()">
+                        <div class="row">
+                            <div class="col">
+                                <h5 align="center" style="font-weight: bold; text-decoration: underline;">VARIABLES</h5>
+                                <div class="variable-list">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="selected_vars" value="Error" id="var1">
+                                        <label class="form-check-label" for="var1">Error</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="selected_vars" value="NumInteracc" id="var2">
+                                        <label class="form-check-label" for="var2">Interacciones</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var3" name="selected_vars" value="page_About">
+                                        <label class="form-check-label" for="var3">About</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var4" name="selected_vars" value="page_Add Friend">
+                                        <label class="form-check-label" for="var4">Add Friend</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var5" name="selected_vars" value="page_Add to Playlist">
+                                        <label class="form-check-label" for="var5">Add to Playlist</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var6" name="selected_vars" value="page_Cancel">
+                                        <label class="form-check-label" for="var6">Cancel</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var7" name="selected_vars" value="page_Cancellation Confirmation">
+                                        <label class="form-check-label" for="var7">Cancellation Confirmation</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var8" name="selected_vars" value="page_Downgrade">
+                                        <label class="form-check-label" for="var8">Downgrade</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var9" name="selected_vars" value="page_Error">
+                                        <label class="form-check-label" for="var9">Page Error</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var10" name="selected_vars" value="page_Help">
+                                        <label class="form-check-label" for="var10">Help</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var11" name="selected_vars" value="page_Home">
+                                        <label class="form-check-label" for="var11">Home</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var12" name="selected_vars" value="page_Logout">
+                                        <label class="form-check-label" for="var12">Logout</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var13" name="selected_vars" value="page_Roll Advert">
+                                        <label class="form-check-label" for="var13">Roll Advert</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var14" name="selected_vars" value="page_Save Settings">
+                                        <label class="form-check-label" for="var14">Save Settings</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var15" name="selected_vars" value="page_Settings">
+                                        <label class="form-check-label" for="var15">Settings</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var16" name="selected_vars" value="page_Submit Downgrade">
+                                        <label class="form-check-label" for="var16">Submit Downgrade</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var17" name="selected_vars" value="page_Submit Upgrade">
+                                        <label class="form-check-label" for="var17">Submit Upgrade</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var18" name="selected_vars" value="page_Thumbs Down">
+                                        <label class="form-check-label" for="var18">Thumbs Down</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var19" name="selected_vars" value="page_Thumbs Up">
+                                        <label class="form-check-label" for="var19">Thumbs Up</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="var20" name="selected_vars" value="page_Upgrade">
+                                        <label class="form-check-label" for="var20">Upgrade</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-divider"></div>
+                            <div class="col">
+                                <h5 align="center" style="font-weight: bold; text-decoration: underline;">VARIABLES SELECCIONADAS</h5>
+                                <div class="selected-variables">
+                                    <p>{{ selected_vars }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                        <div class="btn-container-arboles">
+                            <button type="button" class="btn-selectall-arboles" onclick="seleccionarTodos()">SELECCIONAR TODO</button>
+                            <button type="button" class="btn-limpiar-arboles" onclick="limpiarSeleccion()">LIMPIAR</button>
+                        </div><br>
+                        <div class="button-seleccionvbles-container">
+                            <button type="submit" class="button-pred-arboles" name="model_selection" value="tree">Decision Tree</button>
+                            <button type="submit" class="button-pred-arboles" name="model_selection" value="rf">Random Forest</button>
+                        </div>
+                    </form>
+                <br>
+            </form>
+            <br><br>
+            <div id="spinner" class="d-none">
+                <div class="d-flex align-items-center">
+                  <strong>Prediciendo...</strong>
+                  <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+              </div>
+            <br>
+
+            
+            <script>
+                function limpiarSeleccion() {
+                  // Des-seleccionar todos los checkboxes marcados
+                  var checkboxes = document.querySelectorAll('input[name="selected_vars"]:checked');
+                  checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = false;
+                  });
+              
+                  // Limpiar la columna donde se guardan las variables seleccionadas
+                  var selectedVariables = document.querySelector('.selected-variables');
+                  selectedVariables.innerHTML = ''; // Elimina todo el contenido de la columna
+                }
+            </script>
+
+
+            <script>
+                const variableList = document.querySelector('.variable-list');
+                const selectedVariables = document.querySelector('.selected-variables');
+
+                variableList.addEventListener('change', (event) => {
+                    if (event.target.type === 'checkbox') {
+                        const variableId = event.target.id;  // Obtén el ID del checkbox
+                        const labelElement = document.querySelector(`label[for="${variableId}"]`);
+                        const variableName = labelElement.textContent;  // Obtiene el texto del label
+
+                        if (event.target.checked) {
+                            const newItem = document.createElement('div');
+                            newItem.textContent = variableName;
+                            selectedVariables.appendChild(newItem);
+                        } else {
+                            const items = selectedVariables.querySelectorAll('div');
+                            for (const item of items) {
+                                if (item.textContent === variableName) {
+                                    selectedVariables.removeChild(item);
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            
+            <script>
+                function seleccionarTodos() {
+                  // Obtener todos los elementos de form-check-input
+                  var checkboxes = document.querySelectorAll('input[name="selected_vars"]');
+                  
+                  // Verificar si al menos uno de los elementos está seleccionado
+                  var alMenosUnoSeleccionado = Array.from(checkboxes).some(function (checkbox) {
+                    return checkbox.checked;
+                  });
+              
+                  // Si al menos uno está seleccionado, deseleccionar todos; de lo contrario, seleccionar todos
+                  checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = !alMenosUnoSeleccionado;
+                  });
+                }
+              
+                function mostrarSpinner() {
+                  document.getElementById('spinner').classList.remove('d-none'); // Muestra el spinner
+                }
+              
+                function ocultarSpinner() {
+                  document.getElementById('spinner').classList.add('d-none'); // Oculta el spinner
+                }
+              
+                function validarSeleccion() {
+                  var checkboxes = document.querySelectorAll('input[name="selected_vars"]:checked');
+                  
+                  if (checkboxes.length === 0) {
+                    alert("Debes seleccionar al menos una opción antes de predecir.");
+                    return false; // Evita el envío del formulario
+                  }
+                  
+                  mostrarSpinner(); // Muestra el spinner al enviar el formulario
+                  
+                  return true; // Permite el envío del formulario
+                }
+            </script>
+              
+             
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const tooltips = document.querySelectorAll('.custom-tooltip');
+                    tooltips.forEach(tooltip => {
+                        tooltip.addEventListener('mouseenter', function () {
+                            const text = tooltip.getAttribute('data-text'); // Obtén el texto de data-text
+                            const tooltipElement = document.createElement('div');
+                            tooltipElement.className = 'tooltip-text';
+                            tooltipElement.textContent = text;
+                            document.body.appendChild(tooltipElement);
+                            const rect = tooltip.getBoundingClientRect();
+                            tooltipElement.style.top = rect.bottom + 'px';
+                            tooltipElement.style.left = rect.left + 'px';
+                        });
+                        tooltip.addEventListener('mouseleave', function () {
+                            const tooltipElement = document.querySelector('.tooltip-text');
+                            if (tooltipElement) {
+                                tooltipElement.remove();
+                            }
+                        });
+                    });
+                });
+            </script>      
+
+            {% if dframe_a %}
+                <div id="resultados"> 
+                    <p class="text-resultados-arboles">Resultados</p>
+                    <br>
+                    <p class="subtext-resultados-arboles"><i class="fa-solid fa-circle-info"></i>        Métricas con datos de validación</p>
+                    <p> {{ dframe_a|safe }}</p><br><br>
+                </div>
+                <script>
+                    // Función para desplazar suavemente hacia la sección de resultados
+                    function scrollToResults() {
+                        const resultadosSection = document.getElementById('resultados');
+                        resultadosSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    // Llama a la función para desplazar cuando se renderice la página
+                    document.addEventListener('DOMContentLoaded', scrollToResults);
+                </script>
+                <br>
+                <div id="plotly-chart"></div>
+                <script>
+                    var graphJSON = '{{ graphJSON_dt | safe }}';
+                    Plotly.plot('plotly-chart', JSON.parse(graphJSON));
+                </script>
+            {% endif %}
+            <div class="button-container-ver-exp-m">
+                <button id="toggleButton3" class="btn-ver-exp-m"><i class="fa-solid fa-magnifying-glass"></i>  Ver explicación de modelos</button>
+            </div>
+                <div class="collapse mt-3" id="cardContent3">
+                    <div class="card card-body">
+                      <p class="text-exp-metricas">
+                        <b>Decision Tree</b><br>
+                        La lógica para entrenar árboles de decisión:<br>
+                        La <b>ganancia de información</b> mide la cantidad de información que obtenemos.
+                        Lo hace usando entropía. La idea es restar de la entropía de nuestros datos antes de dividir la entropía de cada 
+                        partición posible a partir de entonces. Luego seleccionamos la división que produce la 
+                        mayor reducción de entropía o, equivalentemente, el mayor aumento de información.
+                        El algoritmo central para calcular la ganancia de información se llama ID3. Es un 
+                        procedimiento recursivo que comienza desde el nodo raíz del árbol e itera de arriba
+                        hacia abajo en todas las ramas que no son hojas de manera voraz, calculando en cada 
+                        profundidad la diferencia de entropía.<hr class="colored-line">
+                        <b>Random Forest</b>
+                        Es un ejemplo de aprendizaje conjunto (Ensemble learning) donde cada modelo es un árbol de decisión.El aprendizaje conjunto crea 
+                        un modelo más sólido al agregar las predicciones de múltiples modelos débiles, como los árboles de decisión. 
+                        La agregación de votos mayoritarios puede tener mayor precisión que los modelos individuales. Existen 
+                        otros métodos para agregar predicciones, como el voto por mayoría ponderada.
+                    </p>
+                </div>
+                  </div>  
+    
+        <script>
+            $(document).ready(function(){
+              $('#toggleButton3').click(function(){
+                $('#cardContent3').collapse('toggle');
+              });
+            });
+        </script>
+
+    <footer class="footer-admin">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+</body>
+{% endblock %}

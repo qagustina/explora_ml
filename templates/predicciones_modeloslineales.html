@@ -1,0 +1,473 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+</head>
+
+
+<body class="pred-ml-body">
+    <p class="pred-title">Modelos Lineales</p>   
+        <br>
+        <br>
+        <div class="container">
+            <div class="card-pred text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#tab1" data-toggle="tab">Logistic Regression</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab2" data-toggle="tab">Stochastic Gradient Descent</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab1">
+                            <br>
+                            <p class="card-text" align="left">
+                                <b>Regresión logística</b> es un algoritmo de aprendizaje supervisado<span class="custom-tooltip info-icon" data-text="el objetivo es predecir una salida dadas algunas entradas">[ℹ]</span>
+                                    que se puede utilizar para clasificar datos en categorías o clases, prediciendo la <u>probabilidad</u> de que, una observación caiga 
+                                    en una clase particular, en función de sus características.<br>Hay un resultado \(y\) que cae en una de dos categorías<span class="custom-tooltip info-icon" data-text="en este caso 0 (no churn) o 1 (churn)">[ℹ]</span>
+                                    y la siguiente ecuación se utiliza para estimar la probabilidad de que \(y\) pertenezca a una categoría particular dadas las entradas \(X = (x_1, x_2, \ldots, x_k)\). 
+                                    <br><br> En general, la ecuación para regresion logistica es:<br>
+                                    <p align="center">\(P(y=1|X) = \text{sigmoid}(z) = \frac{1}{1 + e^{-z}}\)</p>                    
+                                <p align="left">Dónde:<br></p>
+                                    <p align="center">\( (z) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_k x_k \)</p>
+                                <p align="left">La ecuación para \( z \) se llama predictor lineal y la función sigmoide lo transforma de modo que los valores caen entre 0 y 1 y,
+                                    por lo tanto, pueden interpretarse como probabilidades.<br></p>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="tab2">
+                            <br>
+                            <p class="card-text" align="left">
+                                <b>Descenso de gradiente estocástico</b> es una variante del algoritmo de Descenso de Gradiente que consiste en seleccionar un único ejemplo de 
+                                entrenamiento aleatorio (o un lote pequeño)<span class="custom-tooltip info-icon" data-text="el costo computacional por iteración se reduce significativamente en comparación con otros métodos">[ℹ]</span> 
+                                para calcular el gradiente y actualizar los parámetros del modelo. Introduce aleatoriedad en el proceso de optimización.
+                                <br><br>En general, la ecuación para SGD es:
+                                <p align="center">\( \theta = \theta - \alpha \nabla J(\theta) \)</p>
+                                <p align="left">Dónde:<br>
+                                \( \theta \): representa el vector de parámetros que estamos ajustando.<br><br>
+                                \( \alpha \): es la tasa de aprendizaje, un hiperparámetro que determina el tamaño del paso o la velocidad a la que se actualizan los parámetros.<br><br>
+                                \(  \nabla J(\theta) \): es el gradiente de la función de costos \(  \ J(\theta) \) con respecto a los parámetros del modelo θ. 
+                                El gradiente indica la dirección y magnitud del ascenso (o descenso) más pronunciado de la función de costos.
+                                </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="button-container-ver-vbles">
+            <button id="toggleButton1" class="btn-ver-vbles"><i class="fa-solid fa-magnifying-glass"></i>   Ver explicación de variables</button>
+        </div>
+
+          <div class="collapse mt-3" id="cardContent1">
+            <div class="card card-body">
+                <p class="text-ver-vbles">Tené en cuenta que las variables que aportan mayor información a la predicción son: Roll Advert, Error, Interacciones,
+                    Submit Downgrade, Cancellation Confirmation, estas nos indican acciones negativas del usuario con la aplicación.
+                </p>
+                <p class="text-ver-vbles"><ul>
+                        <li><b>Error</b>: cantidad de errores por usuario</li>
+                        <li><b>Interacciones</b>: cantidad de interacciones</li>
+                        <li><b>About</b>: acción de ir a pestaña "acerca de"</li>
+                        <li><b>Add friend</b>: acción de agregar un amigo</li>
+                        <li><b>Add to Playlist</b>: acción de agregar musica a la playlist</li>
+                        <li><b>Cancel</b>: acción de cancelar</li>
+                        <li><b>Cancellation Confirmation</b>: acción de confirmar cancelación</li>
+                        <li><b>Downgrade</b>: acción de ir a pestaña darse de baja</li>
+                        <li><b>Page Error</b>: cuando el usuario obtiene un error</li>
+                        <li><b>Help</b>: acción de ir a pestaña "ayuda"</li>
+                        <li><b>Home</b>: acción de ir a pestaña "inicio"</li>
+                        <li><b>Logout</b>: acción de cerrar sesión</li>
+                        <li><b>Roll Advert</b>: ver anuncios/publicidad</li>
+                        <li><b>Save settings</b>: accion de guardar cambios</li>
+                        <li><b>Settings</b>: acción de ir a pestaña ajustes</li>
+                        <li><b>Submit Downgrade</b>: confirmar darse de baja</li>
+                        <li><b>Submit Upgrade</b>: confirmar subir de nivel</li>
+                        <li><b>Thumbs Down</b>: acción botón "no me gusta"</li>
+                        <li><b>Thumbs Up</b>: acción botón "no me gusta"</li>
+                        <li><b>Upgrade</b>: acción de ir a pestaña subir de nivel</li>
+                    </ul> 
+                </p>
+            </div>
+          </div>
+          <p class="pred-title-sub">Selección de variables</p>
+            <div class="card-variables m-auto">         
+                <form method="POST" action="/predict" onsubmit="return validarSeleccion()">
+                    <div class="row">
+                        <div class="col">
+                            <h5 align="center" style="font-weight: bold; text-decoration: underline;">VARIABLES</h5>
+                            <div class="variable-list">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selected_vars" value="Error" id="var1">
+                                    <label class="form-check-label" for="var1">Error</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selected_vars" value="NumInteracc" id="var2">
+                                    <label class="form-check-label" for="var2">Interacciones</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var3" name="selected_vars" value="page_About">
+                                    <label class="form-check-label" for="var3">About</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var4" name="selected_vars" value="page_Add Friend">
+                                    <label class="form-check-label" for="var4">Add Friend</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var5" name="selected_vars" value="page_Add to Playlist">
+                                    <label class="form-check-label" for="var5">Add to Playlist</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var6" name="selected_vars" value="page_Cancel">
+                                    <label class="form-check-label" for="var6">Cancel</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var7" name="selected_vars" value="page_Cancellation Confirmation">
+                                    <label class="form-check-label" for="var7">Cancellation Confirmation</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var8" name="selected_vars" value="page_Downgrade">
+                                    <label class="form-check-label" for="var8">Downgrade</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var9" name="selected_vars" value="page_Error">
+                                    <label class="form-check-label" for="var9">Page Error</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var10" name="selected_vars" value="page_Help">
+                                    <label class="form-check-label" for="var10">Help</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var11" name="selected_vars" value="page_Home">
+                                    <label class="form-check-label" for="var11">Home</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var12" name="selected_vars" value="page_Logout">
+                                    <label class="form-check-label" for="var12">Logout</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var13" name="selected_vars" value="page_Roll Advert">
+                                    <label class="form-check-label" for="var13">Roll Advert</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var14" name="selected_vars" value="page_Save Settings">
+                                    <label class="form-check-label" for="var14">Save Settings</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var15" name="selected_vars" value="page_Settings">
+                                    <label class="form-check-label" for="var15">Settings</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var16" name="selected_vars" value="page_Submit Downgrade">
+                                    <label class="form-check-label" for="var16">Submit Downgrade</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var17" name="selected_vars" value="page_Submit Upgrade">
+                                    <label class="form-check-label" for="var17">Submit Upgrade</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var18" name="selected_vars" value="page_Thumbs Down">
+                                    <label class="form-check-label" for="var18">Thumbs Down</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var19" name="selected_vars" value="page_Thumbs Up">
+                                    <label class="form-check-label" for="var19">Thumbs Up</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="var20" name="selected_vars" value="page_Upgrade">
+                                    <label class="form-check-label" for="var20">Upgrade</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-divider"></div>
+                        <div class="col">
+                            <h5 align="center" style="font-weight: bold; text-decoration: underline;">VARIABLES SELECCIONADAS</h5>
+                            <div class="selected-variables">
+                                <p>{{ selected_vars }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="b-pred-lineal">
+                        <button type="button" class="btn-selectall" onclick="seleccionarTodos()">SELECCIONAR TODO</button>
+                        <button type="button" class="btn-limpiar" onclick="limpiarSeleccion()">LIMPIAR</button>
+                    </div>
+                    <div class="button-seleccionvbles-container">
+                        <button type="submit" class="button-sv-container">PREDECIR  <i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                    </div>
+                </form>
+                <br>
+                <div id="spinner" class="d-none">
+                    <div class="d-flex align-items-center">
+                        <strong>Prediciendo...</strong>
+                        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+                       
+            <!--script>
+                    function seleccionarTodos() {
+                        // Obtener todos los elementos de form-check-input
+                        var checkboxes = document.querySelectorAll('input[name="selected_vars"]');
+                        
+                        // Verificar si al menos uno de los elementos está seleccionado
+                        var alMenosUnoSeleccionado = Array.from(checkboxes).some(function (checkbox) {
+                            return checkbox.checked;
+                        });
+
+                        // Si al menos uno está seleccionado, deseleccionar todos; de lo contrario, seleccionar todos
+                        checkboxes.forEach(function (checkbox) {
+                            checkbox.checked = !alMenosUnoSeleccionado;
+                        });
+                    }
+                    function validarSeleccion() {
+                        var checkboxes = document.querySelectorAll('input[name="selected_vars"]:checked');
+                    
+                        if (checkboxes.length === 0) {
+                            alert("Debes seleccionar al menos una opción antes de predecir.");
+                            return false; // Evita el envío del formulario
+                        }
+                    
+                        return true; // Permite el envío del formulario
+                    }
+            </script-->
+
+            
+            <!--script>
+                const variableList = document.getElementById('variable-list');
+                const selectedVariables = document.getElementById('selected-variables');
+
+                variableList.addEventListener('dragstart', (event) => {
+                    event.dataTransfer.setData('text/plain', event.target.textContent);
+                });
+
+                selectedVariables.addEventListener('dragover', (event) => {
+                    event.preventDefault();
+                });
+
+                selectedVariables.addEventListener('drop', (event) => {
+                    event.preventDefault();
+                    const variableName = event.dataTransfer.getData('text/plain');
+                    const newItem = document.createElement('li');
+                    newItem.textContent = variableName;
+                    newItem.classList.add('draggable-item');
+                    selectedVariables.appendChild(newItem);
+                });
+            </script-->
+            <script>
+                function limpiarSeleccion() {
+                  // Des-seleccionar todos los checkboxes marcados
+                  var checkboxes = document.querySelectorAll('input[name="selected_vars"]:checked');
+                  checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = false;
+                  });
+              
+                  // Limpiar la columna donde se guardan las variables seleccionadas
+                  var selectedVariables = document.querySelector('.selected-variables');
+                  selectedVariables.innerHTML = ''; // Elimina todo el contenido de la columna
+                }
+            </script>
+
+
+            <script>
+                const variableList = document.querySelector('.variable-list');
+                const selectedVariables = document.querySelector('.selected-variables');
+
+                variableList.addEventListener('change', (event) => {
+                    if (event.target.type === 'checkbox') {
+                        const variableId = event.target.id;  // Obtén el ID del checkbox
+                        const labelElement = document.querySelector(`label[for="${variableId}"]`);
+                        const variableName = labelElement.textContent;  // Obtiene el texto del label
+
+                        if (event.target.checked) {
+                            const newItem = document.createElement('div');
+                            newItem.textContent = variableName;
+                            selectedVariables.appendChild(newItem);
+                        } else {
+                            const items = selectedVariables.querySelectorAll('div');
+                            for (const item of items) {
+                                if (item.textContent === variableName) {
+                                    selectedVariables.removeChild(item);
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            
+            <script>
+                function seleccionarTodos() {
+                  // Obtener todos los elementos de form-check-input
+                  var checkboxes = document.querySelectorAll('input[name="selected_vars"]');
+                  
+                  // Verificar si al menos uno de los elementos está seleccionado
+                  var alMenosUnoSeleccionado = Array.from(checkboxes).some(function (checkbox) {
+                    return checkbox.checked;
+                  });
+              
+                  // Si al menos uno está seleccionado, deseleccionar todos; de lo contrario, seleccionar todos
+                  checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = !alMenosUnoSeleccionado;
+                  });
+                }
+              
+                function mostrarSpinner() {
+                  document.getElementById('spinner').classList.remove('d-none'); // Muestra el spinner
+                }
+              
+                function ocultarSpinner() {
+                  document.getElementById('spinner').classList.add('d-none'); // Oculta el spinner
+                }
+              
+                function validarSeleccion() {
+                  var checkboxes = document.querySelectorAll('input[name="selected_vars"]:checked');
+                  
+                  if (checkboxes.length === 0) {
+                    alert("Debes seleccionar al menos una opción antes de predecir.");
+                    return false; // Evita el envío del formulario
+                  }
+                  
+                  mostrarSpinner(); // Muestra el spinner al enviar el formulario
+                  
+                  return true; // Permite el envío del formulario
+                }
+            </script>
+              
+             
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const tooltips = document.querySelectorAll('.custom-tooltip');
+                    tooltips.forEach(tooltip => {
+                        tooltip.addEventListener('mouseenter', function () {
+                            const text = tooltip.getAttribute('data-text'); // Obtén el texto de data-text
+                            const tooltipElement = document.createElement('div');
+                            tooltipElement.className = 'tooltip-text';
+                            tooltipElement.textContent = text;
+                            document.body.appendChild(tooltipElement);
+                            const rect = tooltip.getBoundingClientRect();
+                            tooltipElement.style.top = rect.bottom + 'px';
+                            tooltipElement.style.left = rect.left + 'px';
+                        });
+                        tooltip.addEventListener('mouseleave', function () {
+                            const tooltipElement = document.querySelector('.tooltip-text');
+                            if (tooltipElement) {
+                                tooltipElement.remove();
+                            }
+                        });
+                    });
+                });
+            </script>                
+                
+            {% if dframe %}
+                <div id="resultados"> 
+                    <p class="text-resultados-ml">Resultados</p>
+                    <br>
+                    <p class="subtext-resultados-ml"><i class="fa-solid fa-circle-info"></i>        Métricas con datos de validación</p>
+                    <p> {{ dframe|safe }}</p><br><br>
+                </div>
+                <script>
+                    // Función para desplazar suavemente hacia la sección de resultados
+                    function scrollToResults() {
+                        const resultadosSection = document.getElementById('resultados');
+                        resultadosSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    // Llama a la función para desplazar cuando se renderice la página
+                    document.addEventListener('DOMContentLoaded', scrollToResults);
+                </script>
+                <br>
+                <div id="plotly-chart"></div>
+                <script>
+                    var graphJSON = '{{ graphJSON_m | safe }}';
+                    Plotly.plot('plotly-chart', JSON.parse(graphJSON));
+                </script>
+            {% endif %}
+            
+            <div class="button-container-ver-exp-m">
+                <button id="toggleButton2" class="btn-ver-exp-m"><i class="fa-solid fa-magnifying-glass"></i>           Ver explicación de métricas</button>
+            </div>
+                <div class="collapse mt-3" id="cardContent2">
+                    <div class="card card-body">
+                      <p class="text-exp-metricas">
+                        Teniendo en cuenta que nuestro problema consiste en churn prediction con el objetivo de tomar alguna acción al respecto para mantener a 
+                        esos usuarios en la plataforma, hay ciertas métricas que van a ser más relevantes que otras:<br> 
+                        <b>Accuracy</b>: Es importante en este contexto tener la menor cantidad de falsos negativos, ya que estos usuarios van a quedar fuera de nuestra 
+                        campaña de fidelización. Pero por otro lado los falsos positivos no tendrían un impacto significativo, sin embargo podrían 
+                        significar una perdida de dinero al invertir fidelización en clientes que no era necesario. En cualquier caso, esta métrica del modelo es importante 
+                        para nuestro caso de uso.<br>
+                        <b>Precision</b>: La presición nos va a servir para conocer que tanto dinero estaríamos invirtiendo en fidelizar clientes que en realidad no lo 
+                        necesitaban por haber sido seleccionados como falsos positivos.<br>
+                        <b>Recall</b>: Esta métrica resulta interesante optimizarla, ya que con un valor elevado, estaríamos teniendo muy pocos casos donde el usuario hace churn 
+                        y no lo hubieramos predicho. A la par de está métrica hay que evaluar la presición, puesto que si siempre marcaramos como positivos, 
+                        esta métrica sería ideal, pero se nos iría el presupuesto en la campaña de fidelización.<br>
+                        <b>F1 score</b>:Es la métrica más importante en este caso de uso por que relaciona la precision con el recall, lo cual es de gran interés
+                         ya que sería importante encontrar un punto medio entre recall y precisión para perder la menor cantidad de dinero y a su vez captar en el 
+                         plan de fidelización a todos los clientes posibles churn.<br>
+                    </p>
+                </div>
+                  </div>
+            <p class="title-metricas">Métricas de Clasificación</p>
+            <div class="custom-table-responsive-m">
+                <table class="custom-table-m align-middle table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="custom-th" scope="col" style="width: 10%;">Métrica</th>
+                            <th class="custom-th" scope="col" style="width: 10%;">Fórmula</th>
+                            <th class="custom-th" scope="col" style="width: 20%;">Interpretación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="custom-th" scope="row">Accuracy</th>
+                            <td class="custom-td" align="center">\( \frac{TP + TN}{TP + TN + FP + FN} \)</td>
+                            <td class="custom-td">Es la proporción de predicciones correctas entre el número total de casos procesados.</td>
+                        </tr>
+                        <tr>
+                            <th class="custom-th" scope="row">Precision</th>
+                            <td class="custom-td" align="center">\( \frac{TP}{TP + FP} \)</td>
+                            <td class="custom-td">Es la fracción de ejemplos positivos etiquetados correctamente de todos los ejemplos que fueron etiquetados como positivos.</td>
+                        </tr>
+                        <tr>
+                            <th class="custom-th" scope="row">Recall Sensitivity</th>
+                            <td class="custom-td" align="center">\( \frac{TP}{TP + FN} \)</td>
+                            <td class="custom-td">Es la fracción de los ejemplos positivos que el modelo etiquetó correctamente como positivos.</td>
+                        </tr>
+                        <tr>
+                            <th class="custom-th" scope="row">F1 score</th>
+                            <td class="custom-td" align="center">\( \frac{2*(precision * recall)}{precision * recall} \)</td>
+                            <td class="custom-td">Es la media armónica de presicion y recall.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <script>
+                $(document).ready(function(){
+                  $('#toggleButton1').click(function(){
+                    $('#cardContent1').collapse('toggle');
+                  });
+              
+                  $('#toggleButton2').click(function(){
+                    $('#cardContent2').collapse('toggle');
+                  });
+                });
+            </script>
+            
+    <footer class="footer-admin">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+</body>
+{% endblock %}

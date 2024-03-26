@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body class="eda-body"> 
+    <div class="title-eda">
+        Análisis Exploratorio de Datos
+    </div>
+       <p class="card-text-eda"> 
+        En el dataset bajo estudio existen usuarios calificados como <b>Churn</b> y usuarios calificados como <b>No Churn</b>.
+        En esta sección exploramos las variables del dataset comparando las mismas. El objetivo con el análisis exploratorio es obtener información sobre las variables, 
+        sus correlaciones y encontrar cuales son las <u>variables relevantes</u> para aplicar en los modelos de aprendizaje automático.
+        </p>
+    <div class="title-eda-sub">
+        Análisis de Clases
+    </div>
+    <div class="row p-4">
+        <div class="card m-auto custom-card-eda" style="width: 90%;">
+            <div class="card-body">
+                <div id="graph1"></div>
+                <p class="card-text">El gráfico nos muestra la proporción que cada clase representa del total.
+                    Existen  440.059 calificados como usuarios no churn y 103.646 usuarios calificados como usuarios churn, 
+                    representando un 81% y 19% respectivamente. Se observa un desbalance significativo entre las clases, 
+                    donde la cantidad de usuarios que no realizan churn es considerablemente mayor que aquellos que sí lo hacen.
+                </p>
+            </div>
+            </div>
+        </div>
+    
+    <div class="card m-auto custom-card-eda" style="width: 90%;">
+        <div class="card-body">
+            <div id="graph"></div>
+                <p class="card-text">En el gráfico comparamos el nivel de usuario (gratuito o pago) en las clases. 
+                    De los 103.646 usuarios calificados como churn un 74% utiliza la plataforma de manera gratuita, mientras que un 26% lo hace pago. 
+                    Respecto a los 440.059 usuarios calificados como no churn un 77% utiliza de manera gratis, mientras que un 23% lo hace pago.
+                    Observamos que la proporción de usuarios gratuitos (free) es levemente mayor en los usuarios No Churn.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-4">
+        <div class="card m-auto custom-card-eda" style="width: 90%;">
+            <div class="card-body">
+                <div id="graph4"></div>
+                <p class="card-text">En el gráfico se puede apreciar que la mediana de los usuarios clasificados como churn es superior a la mediana 
+                    de los usuarios que no lo son, con valores de 18.5 y 11 respectivamente. Esto sugiere que esta variable debería ser considerada al realizar predicciones,
+                     ya que indica que <u>los usuarios que abandonan muestran una mayor exposición a anuncios publicitarios</u>.</p>
+            </div>
+            </div>
+        </div>
+
+
+    <div class="row p-4">
+        <div class="card m-auto custom-card-eda" style="width: 90%;">
+            <div class="card-body">
+                <div id="graph3"></div>
+                    <p class="card-text">En este gráfico observamos que los usuarios calificados como churn vieron una mayor cantidad de publicidades (Roll Advert) 
+                        en comparación con los usuarios calificados como No churn. Además, tuvieron mayor interacción con el boton pulgares abajo (Thumbs Down), 
+                        que refleja que no les gustó una canción, artista o algo de la plataforma. 
+                        En cambio, aquellos que no hicieron churn tuvieron una mayor cantidad de interacciones positivas, como agregar un amigo (Add Friend), 
+                        agregar una canción a la cola (Add to Playlist) y ponerle me gusta a alguna canción (Thumbs Up).</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para dibujar un gráfico a partir de su JSON
+        function drawGraph(graphDiv, graphJSON) {
+            Plotly.plot(graphDiv, JSON.parse(graphJSON), {});
+        }
+        
+        //Obtener los datos JSON de los gráficos desde Flask
+        var graph1JSON = '{{ graph1|safe }}';
+        var graphJSON = '{{ graph|safe }}';
+        var graph3JSON = '{{ graph3|safe }}';
+        var graph4JSON = '{{ graph4|safe }}';
+        
+        // Dibujar los gráficos
+        drawGraph('graph1', graph1JSON);
+        drawGraph('graph', graphJSON);
+        drawGraph('graph3', graph3JSON);
+        drawGraph('graph4', graph4JSON);
+    </script>
+
+    <footer class="footer-admin">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+    
+</body>
+{% endblock %}

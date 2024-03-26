@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+
+<body class="home-body">
+  <div class="container-home-title">
+    <h1 class="home-title">Explora ML</h1> 
+    <img src="{{url_for('static', filename='machine-learning.png')}}" alt="Descripción de la imagen" class="small-image">
+  </div>
+    <p class="text-home"><u>ExploraML</u> es una plataforma web donde se introducen conceptos básicos de aprendizaje automático 
+      permitiendo interactuar con un dataset sobre predicción de abandono de clientes (Churn Prediction) a una plataforma de streaming de música.<br>
+      <b>Customer Churn</b> hace referencia a la tasa de abandono o rotación de clientes en una empresa durante un período de tiempo específico. Es un potente 
+      indicador de lealtad y del grado de satisfacción del cliente.
+      Medir el customer churn funciona como un termómetro de la salud de tu negocio: al relevar la fluctuación de clientes brinda información 
+      acerca de los índices de satisfacción y, por extensión, predecir el riesgo de abandono a fin de <i>tomar acciones preventivas</i>.
+      <ul style="list-style-type:none" class="text-home-list">
+          <li>
+            <img src="{{url_for('static', filename='classification.png')}}" alt="Descripción de la imagen 2" width="30" height="30">
+            <span>Visualizá las variables del dataset comparando las distintas clases en <a class="links-home" href="{{ url_for('eda_churn_nochurn') }}">sección análisis</a>.</span>
+          </li><br>
+          <li>
+            <img src="{{url_for('static', filename='cognition.png')}}" alt="Descripción de la imagen 2" width="30" height="30">
+            <span>Explorá los resultados obtenidos de modelos entrenados en <a class="links-home" href="{{ url_for('modelos') }}">sección experimentos</a>.</span>
+          </li><br>
+          <li>
+            <img src="{{url_for('static', filename='deep-learning.png')}}" alt="Descripción de la imagen 2" width="30" height="30">
+            <span> Entrená modelos comparando su resultado: <a class="links-home" href="{{ url_for('predicciones_modeloslineales') }}">modelos lineales</a>, <a class="links-home" href="{{ url_for('predicciones_modelosarboles') }}">árboles de desición</a>.</span>
+            <!--ul style="margin-left: 20px; list-style-type:none">
+              <li><a class="links-home" href="{{ url_for('predicciones_modeloslineales') }}">  Modelos Lineales</a></li>
+              <li><a class="links-home" href="{{ url_for('predicciones_modelosarboles') }}">Modelos basados en árboles</a></li>
+            </ul-->
+          </li>
+      </ul>
+    </p>
+    <footer class="footer-index">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+</body>
+{% endblock %}

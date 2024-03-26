@@ -1,0 +1,314 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+
+<body class="body-admin">
+    <br>
+    <p class="title-admin">Administración de Usuarios</p>
+    <div class="btn-add-user-container">
+        <button type="button" class="btn-add-user btn" data-toggle="modal" data-target="#myModal">
+        <i class="fas fa-solid fa-user-plus"></i>      AGREGAR NUEVO USUARIO</button>
+    </div>
+    <div class="container-admin mt-5">
+        <!-- Modal Registro-->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+            
+            <!-- Modal Registro Header -->
+            <div class="modal-header">
+                    <p class="modal-title">AÑADIR NUEVO USUARIO</p>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal Registro Body -->
+            <div class="modal-body">
+                <form method="POST" action="" id="registrationForm">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.name(class="form-control", placeholder="Nombre completo") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.username(class="form-control", placeholder="Nombre de usuario") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password(class="form-control", placeholder="Contraseña") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email(class="form-control", placeholder="Email") }}
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Seleccionar Rol</label>
+                        <select class="form-select  form-control" name="role" id="role">
+                            {% for role in roles %}
+                                <option value="{{ role.id }}">{{ role.description }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-guardar-user">Guardar</button>
+                </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <!-- Nuevo Modal Modificar Usuario -->
+    <div class="modal" id="modalModificarUsuario">
+        
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <p class="modal-title">MODIFICAR USUARIO</p>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form method="POST" action="" id="modifyForm">
+                        <!-- Aquí van los campos para modificar -->
+                        <div class="form-group">
+                            <label for="modifyName">Nombre</label>
+                            <input type="text" class="form-control" id="modifyName" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="modifyUName">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="modifyUName" placeholder="Nombre de usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="modifyEmail">Email</label>
+                            <input type="text" class="form-control" id="modifyEmail" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="modifyRol">Rol</label>
+                            <input type="text" class="form-control" id="modifyRol" placeholder="Rol">
+                        </div>
+                        <div id="mensajeConfirmacion" style="display: none;" class="alert alert-success">Usuario modificado</div>
+                        <button type="submit" class="btn btn-guardar-cambios">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <table class="table table-list-users">
+            <thead>
+                    <th>ID</th>
+                    <th>Nombre completo</th>
+                    <th>Nombre de usuario</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                    <th> </th>
+            </thead>
+            
+            <tbody>
+                {% for user in users %}
+                <tr> <!--trae datos de la base-->
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role_id }}</td>
+                    <td>
+                        <form>
+                            <button type="button" class="btn-modificar btn btnModificar" data-id="{{ user.id }}">
+                                <i class="fas fa-regular fa-pen-to-square"></i> 
+                            </button>                                          
+                        </form>                      
+                    </td>
+                    <!--td>
+                        <form action="/eliminar/{{ user.id }}" method="POST">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-solid fa-trash-can"></i> </button>
+                        </form>
+                    </td-->
+                    <td>
+                        <form action="/eliminar/{{ user.id }}" method="POST">
+                            <button type="button" class="btn btn-danger btn-eliminar"><i class="fas fa-solid fa-trash-can"></i> </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>     
+    </div>
+
+    <!--delete user-->
+    <!--script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formElements = document.querySelectorAll('form');
+
+            formElements.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const url = this.getAttribute('action');
+                    const method = this.getAttribute('method');
+                    
+                    fetch(url, {
+                        method: method
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Muestra el mensaje emergente
+                        alert(data.message);
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        });
+    </script-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.btn-eliminar');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const form = this.closest('form');
+                    const url = form.getAttribute('action');
+                    const method = form.getAttribute('method');
+    
+                    const confirmDelete = confirm('¿Seguro desea eliminar usuario?');
+    
+                    if (confirmDelete) {
+                        fetch(url, {
+                            method: method
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            location.reload();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    } else {
+                        console.log('Eliminación cancelada');
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- register user -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('registrationForm');
+        var myModal = document.getElementById('myModal'); // Obtener referencia al modal
+        var successMessage = document.getElementById('successMessage'); // Obtener referencia al elemento para el mensaje de éxito
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            fetch('/page_admin', {
+            method: 'POST',
+            body: new FormData(form),
+            })
+            .then(response => {
+            if (response.ok) {
+                location.reload();
+                return response.json(); // Procesar la respuesta si es exitosa
+            }
+            throw new Error('Error al registrar usuario'); // Lanzar un error si la respuesta no es exitosa
+            })
+            .catch(error => {
+            console.error('Error en la petición:', error);
+            });
+        });
+        });
+    </script>
+
+    <!-- modify existing user-->
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            // Obtener una lista de todos los botones de modificar
+            var btnModificarList = document.querySelectorAll('.btnModificar');
+
+            // Iterar sobre cada botón de modificar y agregar un event listener
+            btnModificarList.forEach(function(btnModificar) {
+                btnModificar.addEventListener('click', function() {
+                    // Obtener el ID del usuario desde el atributo data-id del botón clicado
+                    var userID = this.getAttribute('data-id');
+
+                    // Realizar la solicitud para obtener los datos del usuario
+                    fetch('/get_user/' + userID)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            }
+                            throw new Error('Error al obtener datos del usuario');
+                        })
+                        .then(data => {
+                            // Llenar el formulario del nuevo modal con los datos obtenidos
+                            document.getElementById('modifyName').value = data.name;
+                            document.getElementById('modifyUName').value = data.username;
+                            document.getElementById('modifyEmail').value = data.email;
+                            document.getElementById('modifyRol').value = data.role_id;
+                            // Mostrar el nuevo modal de modificación
+                            $(modalModificarUsuario).modal('show');
+                        })
+                        .catch(error => {
+                            console.error('Error en la petición:', error);
+                        });
+
+                    // Controlador de evento para el formulario de modificación
+                    modifyForm.addEventListener('submit', function(event) {
+                        event.preventDefault(); // Evitar el envío del formulario por defecto
+
+                        // Obtener los valores modificados del formulario
+                        var modifiedName = document.getElementById('modifyName').value;
+                        var modifiedUName = document.getElementById('modifyUName').value;
+                        var modifiedEmail = document.getElementById('modifyEmail').value;
+                        var modifiedRol = document.getElementById('modifyRol').value;
+
+                        // Construir el objeto de datos a enviar al servidor
+                        var modifiedUserData = {
+                            name: modifiedName,
+                            username: modifiedUName,
+                            email: modifiedEmail,
+                            role_id: modifiedRol
+                        };
+
+                        // Realizar la solicitud para actualizar los datos del usuario
+                        fetch('/update_user/' + userID, {
+                            method: 'PUT', // Método PUT para actualizar
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(modifiedUserData), // Enviar los datos modificados al servidor
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                // Cerrar el modal después de actualizar
+                                $(modalModificarUsuario).modal('hide');
+                                // Mostrar el mensaje de confirmación
+                                document.getElementById('mensajeConfirmacion').style.display = 'block';
+                                // Recargar la página 
+                                location.reload();
+                            } else {
+                                throw new Error('Error al actualizar datos del usuario');
+                            }
+                        })
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <footer class="footer-page-admin">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+</body>
+
+{% endblock %}

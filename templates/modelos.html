@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+
+<body class="body-experiments">
+    <br>
+    <p class="title-experiments">Modelos Entrenados</p>
+    <p class="subtitle-experiments">En esta sección se visualiza la <u>comparación</u> de seis modelos entrenados de
+        Aprendizaje Supervisado.
+        </p>
+        <div id="chart-container">
+            <div id="p-chart"></div>
+        </div>
+        <script>
+            var graphJSON_m = '{{ graph_map | safe }}';
+            Plotly.plot('p-chart', JSON.parse(graphJSON_m));
+        </script>
+        
+        <br>
+        <p class="title-table-exp">Comparación de Modelos de Machine Learning</p>
+        <div class="table-responsive-experiments">
+            <table class="custom-table-experiments table-hover table-bordered">
+                <tr>
+                    <th></th>
+                    <th class="custom-th-m" scope="col" colspan="4">Training</th>
+                    <th class="custom-th-m" scope="col" colspan="4">Validation</th>
+                </tr>
+                <tr>
+                    <th class="custom-th-m">Modelos</th>
+                    <th class="custom-th-m">Accuracy</th>
+                    <th class="custom-th-m">Precision</th>
+                    <th class="custom-th-m">Recall</th>
+                    <th class="custom-th-m" >F1</th>
+                    <th class="custom-th-m">Accuracy</th>
+                    <th class="custom-th-m">Precision</th>
+                    <th class="custom-th-m">Recall</th>
+                    <th class="custom-th-m">F1</th>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Dummy Classifier</td> 
+                    <td class="custom-td-m">0.49</td>
+                    <td class="custom-td-m">0.49</td>
+                    <td class="custom-td-m">0.49</td>
+                    <td class="custom-td-m" >0.49</td>
+                    <!-- val -->
+                    <td class="custom-td-m">0.50</td>
+                    <td class="custom-td-m">0.50</td>
+                    <td class="custom-td-m">0.50</td>
+                    <td class="custom-td-m">0.50</td>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Logistic Regression</td>
+                    <td>0.57</td>
+                    <td>0.56</td>
+                    <td>0.63</td>
+                    <td>0.59</td>
+                    <!-- val -->
+                    <td>0.57</td>
+                    <td>0.56</td>
+                    <td>0.64</td>
+                    <td>0.59</td>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Stochastic Gradient Descent</td>
+                    <td>0.53</td>
+                    <td>0.52</td>
+                    <td>0.72</td>
+                    <td>0.61</td>
+                    <!--val  -->
+                    <td>0.53</td>
+                    <td>0.52</td>
+                    <td>0.73</td>
+                    <td>0.61</td>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Support Vector Machines</td>
+                    <td>0.56</td>
+                    <td>0.56</td>
+                    <td>0.63</td>
+                    <td>0.59</td>
+                    <!--val  -->
+                    <td>0.57</td>
+                    <td>0.56</td>
+                    <td>0.63</td>
+                    <td>0.59</td>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Decision Tree</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <!--val  -->
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Random Forest</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                    <!--val  -->
+                    <td>0.99</td>
+                    <td>0.98</td>
+                    <td>0.99</td>
+                    <td>0.99</td>
+                </tr>
+                <tr>
+                    <td class="custom-td-n-m">Gradient Boosting</td>
+                    <td>0.91</td>
+                    <td>0.87</td>
+                    <td>0.98</td>
+                    <td>0.92</td>
+                    <!--val  -->
+                    <td>0.91</td>
+                    <td>0.87</td>
+                    <td>0.97</td>
+                    <td>0.92</td>
+                </tr>
+            </table>  
+       </div>
+
+       <div class="chart-c">
+        <div id="plotly-chart"></div>
+        </div>      
+            <script>
+                var graphJSON = '{{ graphJSON_allplots | safe }}';
+                Plotly.plot('plotly-chart', JSON.parse(graphJSON));
+            </script>
+        <p class="info-experiments"><i class="fa-solid fa-circle-info"></i>        Métricas con datos de validación</p>
+    <br>
+    <p align="center"><b><i class="fa-solid fa-tree"></i>     Los modelos basados en árboles han demostrado mejores resultados en este contexto.</b></p>       
+    <footer class="footer-admin">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+</body>
+{% endblock %}
