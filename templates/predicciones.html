@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/main.css">   
+</head>
+
+<body class="exp-body">
+    <div class="title-predicciones">
+        Explorar Modelos...
+    </div>
+    <svg width="1200" height="25">
+        <path d="M10,10 L1100,10" stroke="rgba(252, 106, 73, 0.5)" stroke-width="3.5" />
+      </svg>
+    <div class="container">
+        <div class="row justify-content-center align-items-center mt-5">
+            <div class="col-md-6">
+                <div class="card mx-auto text-center card-models" style="width: 25rem;">
+                    <img src="{{ url_for('static', filename='l_r.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">MODELOS LINEALES</h5>
+                        <p class="card-text">Comparamos los modelos Regresión Logística y Descenso del Gradiente Estocástico.</p>
+                        <a href="{{ url_for('predicciones_modeloslineales') }}">
+                            <button class="btn custom-button">Navegar</button>
+                          </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mx-auto text-center card-models" style="width: 25rem;">
+                    <img src="{{ url_for('static', filename='dtt.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">ARBOLES DE DECISIÓN</h5>
+                        <p class="card-text">Comparamos los modelos Arbol de Desición y Bosque Aleatorio.</p>
+                        <a href="{{ url_for('predicciones_modelosarboles') }}"> 
+                            <button class="btn custom-button">Navegar</button>
+                          </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <footer class="footer-index">
+        <p>Copyright © {{ current_year }} ExploraML</p>
+    </footer>
+    
+</body>
+{% endblock %}
