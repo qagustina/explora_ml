@@ -7,6 +7,30 @@
 </div>
 ExploraML is a web platform designed to introduce basic machine learning concepts, allowing users to interact with a churn prediction dataset and run different supervised learning techniques such as Logistic Regression, Stochastic Gradient Descent, Random Forest, Desicion tree and compare their performance. 
 
+<h3>Login</h3>
+
+![login](screenshots/01_inicio_sesion.PNG)
+
+<h3>Explore models</h3>
+
+![explore](screenshots/06_seccion_entrenamiento.PNG)
+
+<h3>Features selection - linear models</h3>
+
+![features selection](screenshots/09_seleccion_lineales.PNG)
+
+<h3>Scores - linear models</h3>
+
+![scores](screenshots/10_resultados_lineales.PNG)
+
+<h3>Features selection - tree-based models</h3>
+
+![features selection](screenshots/13_seleccion_rf.PNG)
+
+<h3>Scores - tree-based models</h3>
+
+![scores](screenshots/14_resultados_rf.PNG)
+
 ## Technologies used
 - Python
 - Flask
