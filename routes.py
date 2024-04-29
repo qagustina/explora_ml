@@ -1,7 +1,7 @@
 #from application import app
 from app import app
 from flask import render_template, request
-from graphs import get_graphs_data, get_graphs_experiments, get_map_experiments
+from graphs import get_graphs_experiments, get_map_experiments, cb_plot, events_plot, level_plot, page_plot
 from preds import predict_linealmodels, predict_tree, predict_rf
 from funcs import get_year
 from flask_login import login_required
@@ -13,10 +13,18 @@ def index():
 @app.route("/eda_churn_nochurn")
 @login_required
 def eda_churn_nochurn():
-    graph1_json, graph_json, graph3_json, graph4_json = get_graphs_data()
+    #graph1_json, graph_json, graph3_json, graph4_json = get_graphs_data()
+    plot_1_json = cb_plot()
+    fig_e = events_plot()
+    fig_level = level_plot()
+    fig_page = page_plot()
     year = get_year()
-    return render_template('eda_churn_nochurn.html', graph1=graph1_json, 
-                           graph=graph_json, graph3=graph3_json, graph4=graph4_json, current_year=year)
+    return render_template('eda_churn_nochurn.html', 
+                           plot_1_json=plot_1_json, 
+                           fig_e=fig_e, 
+                           fig_level=fig_level,
+                           fig_page=fig_page,
+                           current_year=year)
 
 
 @app.route("/modelos")
@@ -25,7 +33,10 @@ def modelos():
     graphJSON_allplots = get_graphs_experiments()
     graph_map = get_map_experiments()
     year = get_year()
-    return render_template("modelos.html", graphJSON_allplots=graphJSON_allplots, graph_map=graph_map, current_year=year)
+    return render_template("modelos.html", 
+                           graphJSON_allplots=graphJSON_allplots, 
+                           graph_map=graph_map, 
+                           current_year=year)
 
 
 @app.route("/predicciones_modeloslineales")
@@ -40,8 +51,11 @@ def predicciones_modeloslineales():
 @login_required
 def predict():
     dframe, selected_vars, confusion_matrices, graphJSON_m  = predict_linealmodels()
-    return render_template('predicciones_modeloslineales.html',  dframe=dframe,
-                           selected_vars=selected_vars, confusion_matrices=confusion_matrices, graphJSON_m=graphJSON_m)  
+    return render_template('predicciones_modeloslineales.html',  
+                           dframe=dframe,
+                           selected_vars=selected_vars, 
+                           confusion_matrices=confusion_matrices, 
+                           graphJSON_m=graphJSON_m)  
 
 
 @app.route("/predicciones")
@@ -70,6 +84,9 @@ def predict_a():
     else:
         return "Unknown model selection"
     
-    return render_template('predicciones_modelosarboles.html', dframe_a=dframe_a, 
-                           selected_vars=selected_vars, graphJSON_dt=graphJSON_dt, current_year=year)
+    return render_template('predicciones_modelosarboles.html', 
+                           dframe_a=dframe_a, 
+                           selected_vars=selected_vars, 
+                           graphJSON_dt=graphJSON_dt,
+                           current_year=year)
 

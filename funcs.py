@@ -4,6 +4,7 @@ from flask import request
 import os
 from pandas import read_csv
 import datetime
+import polars as pl
 
 def read_file(path):
     csv_path = os.path.abspath(path)
@@ -35,5 +36,11 @@ def metricas(y_true, y_pred):
     precision = round(precision_score(y_true, y_pred), 2)
     return accuracy, recall, f1, precision
 
+
 def get_year():
     return datetime.datetime.now().year
+
+
+def read_file_pl():
+    df = pl.read_csv('static/dataset/df_churn_cleaned.csv')
+    return df

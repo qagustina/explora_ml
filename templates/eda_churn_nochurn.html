@@ -20,7 +20,7 @@
     <div class="row p-4">
         <div class="card m-auto custom-card-eda" style="width: 90%;">
             <div class="card-body">
-                <div id="graph1"></div>
+                <div id="plot_1_json"></div>
                 <p class="card-text">El gráfico nos muestra la proporción que cada clase representa del total.
                     Existen  440.059 calificados como usuarios no churn y 103.646 usuarios calificados como usuarios churn, 
                     representando un 81% y 19% respectivamente. Se observa un desbalance significativo entre las clases, 
@@ -32,7 +32,7 @@
     
     <div class="card m-auto custom-card-eda" style="width: 90%;">
         <div class="card-body">
-            <div id="graph"></div>
+            <div id="fig_level"></div>
                 <p class="card-text">En el gráfico comparamos el nivel de usuario (gratuito o pago) en las clases. 
                     De los 103.646 usuarios calificados como churn un 74% utiliza la plataforma de manera gratuita, mientras que un 26% lo hace pago. 
                     Respecto a los 440.059 usuarios calificados como no churn un 77% utiliza de manera gratis, mientras que un 23% lo hace pago.
@@ -45,7 +45,7 @@
     <div class="row p-4">
         <div class="card m-auto custom-card-eda" style="width: 90%;">
             <div class="card-body">
-                <div id="graph4"></div>
+                <div id="fig_page"></div>
                 <p class="card-text">En el gráfico se puede apreciar que la mediana de los usuarios clasificados como churn es superior a la mediana 
                     de los usuarios que no lo son, con valores de 18.5 y 11 respectivamente. Esto sugiere que esta variable debería ser considerada al realizar predicciones,
                      ya que indica que <u>los usuarios que abandonan muestran una mayor exposición a anuncios publicitarios</u>.</p>
@@ -57,7 +57,7 @@
     <div class="row p-4">
         <div class="card m-auto custom-card-eda" style="width: 90%;">
             <div class="card-body">
-                <div id="graph3"></div>
+                <div id="fig_e"></div>
                     <p class="card-text">En este gráfico observamos que los usuarios calificados como churn vieron una mayor cantidad de publicidades (Roll Advert) 
                         en comparación con los usuarios calificados como No churn. Además, tuvieron mayor interacción con el boton pulgares abajo (Thumbs Down), 
                         que refleja que no les gustó una canción, artista o algo de la plataforma. 
@@ -75,17 +75,17 @@
             Plotly.plot(graphDiv, JSON.parse(graphJSON), {});
         }
         
-        //Obtener los datos JSON de los gráficos desde Flask
-        var graph1JSON = '{{ graph1|safe }}';
-        var graphJSON = '{{ graph|safe }}';
-        var graph3JSON = '{{ graph3|safe }}';
-        var graph4JSON = '{{ graph4|safe }}';
-        
+       //Ob<sd tener los datos JSON de los gráficos desde Flask
+        var plot_1_json = '{{ plot_1_json|safe }}';
+        var fig_e = '{{ fig_e|safe }}';
+        var fig_level = '{{ fig_level|safe }}';
+        var fig_page = '{{ fig_page|safe }}';
+
         // Dibujar los gráficos
-        drawGraph('graph1', graph1JSON);
-        drawGraph('graph', graphJSON);
-        drawGraph('graph3', graph3JSON);
-        drawGraph('graph4', graph4JSON);
+        drawGraph('plot_1_json', plot_1_json);
+        drawGraph('fig_e', fig_e);
+        drawGraph('fig_level', fig_level);
+        drawGraph('fig_page', fig_page);
     </script>
 
     <footer class="footer-admin">
