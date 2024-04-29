@@ -3,7 +3,7 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
-from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import confusion_matrix
 import plotly.express as px
 from json import dumps
 from plotly.utils import PlotlyJSONEncoder
@@ -47,7 +47,7 @@ def predict_linealmodels():
             yaxis=dict(title='Porcentaje'),
             title_x=0.5
         )
-    # Convertir la figura a formato JSON
+    
     graphJSON_m = dumps(fig, cls=PlotlyJSONEncoder)
     
     classes = 'table table-bordered-ml table-hover table-sm'
@@ -76,16 +76,15 @@ def predict_tree():
    
     dframe_a = pd.DataFrame(results, index=['Metrics'])
     colors = ['blue', 'green', 'red', 'orange']
-    # Crear el gráfico de barras
+    
     fig = px.bar(
-        dframe_a.transpose(),  # Transponer DataFrame para usar las métricas como índices
-        x=dframe_a.columns,  # Utilizar las columnas como valores en el eje x
+        dframe_a.transpose(),
+        x=dframe_a.columns,  
         y='Metrics',
-        color_discrete_sequence=colors,  # Asignar colores a las barras
+        color_discrete_sequence=colors, 
         labels={'index': 'Variables', 'Metrics': 'Valor'}  #
     )
     
-    # Actualizar diseño del gráfico
     fig = fig.update_layout(
         title='Métricas del Modelo',
         xaxis=dict(title='Métricas'),
@@ -93,10 +92,8 @@ def predict_tree():
         title_x=0.5
     )
 
-    # Convertir la figura a formato JSON
+    
     graphJSON_dt = dumps(fig, cls=PlotlyJSONEncoder)
-
-
     classes = 'table table-bordered-arboles table-hover table-sm'
     dframe_a = dframe_a.to_html(classes=classes)
 
@@ -106,7 +103,7 @@ def predict_tree():
 def predict_rf():
     X_train, X_val, X_test, y_train, y_val, y_test, selected_vars = cargar_dataset()
 
-    clf = RandomForestClassifier(random_state=RANDOM_STATE)
+    clf = RandomForestClassifier(random_state=RANDOM_STATE, n_jobs=-1) # reduces time
     clf.fit(X_train, y_train)
     y_val_pred = clf.predict(X_val)
     accuracy, recall, f1, precision = metricas(y_val, y_val_pred)
@@ -118,20 +115,18 @@ def predict_rf():
         'F1-score': f1,
         'Presicion': precision,
     }
-
    
     dframe_rf = pd.DataFrame(results, index=['Metrics'])
     colors = ['blue', 'green', 'red', 'orange']
-    # Crear el gráfico de barras
+  
     fig = px.bar(
-        dframe_rf.transpose(),  # Transponer DataFrame para usar las métricas como índices
-        x=dframe_rf.columns,  # Utilizar las columnas como valores en el eje x
+        dframe_rf.transpose(), 
+        x=dframe_rf.columns,  
         y='Metrics',
-        color_discrete_sequence=colors,  # Asignar colores a las barras
+        color_discrete_sequence=colors,  
         labels={'index': 'Variables', 'Metrics': 'Valor'}  #
     )
     
-    # Actualizar diseño del gráfico
     fig = fig.update_layout(
         title='Métricas del Modelo',
         xaxis=dict(title='Métricas'),
@@ -139,10 +134,8 @@ def predict_rf():
         title_x=0.5
     )
 
-    # Convertir la figura a formato JSON
+    # Convertir a formato JSON
     graphJSON_dt = dumps(fig, cls=PlotlyJSONEncoder)
-
-
     classes = 'table table-bordered-arboles table-hover table-sm'
     dframe_rf = dframe_rf.to_html(classes=classes)
 
