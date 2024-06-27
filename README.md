@@ -5,7 +5,7 @@
   [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 </div>
-ExploraML is a web platform designed to introduce basic machine learning concepts, allowing users to interact with a churn prediction dataset and run different supervised learning techniques such as Logistic Regression, Stochastic Gradient Descent, Random Forest, Desicion tree and compare their performance. 
+ExploraML is a web platform designed to introduce basic machine learning concepts, allowing users to interact with a churn prediction dataset and run different supervised learning techniques such as Logistic Regression, Stochastic Gradient Descent, Random Forest, Decision tree and compare their performance. 
 
 <h3>Login</h3>
 
